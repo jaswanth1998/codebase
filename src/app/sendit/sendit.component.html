@@ -1,0 +1,111 @@
+<div id="headng">
+    SendIt
+</div>
+
+
+
+<div class="container">
+    <div class="center">
+        <mat-form-field id="inputtext">
+            <input matInput placeholder="Enter the task name">
+        </mat-form-field>
+
+        <div>
+            <mat-slide-toggle class="example-margin" [(ngModel)]="askprerequest" [color]="color" [checked]="checked"
+                [disabled]="disabled">
+                Is there any Prerequest
+            </mat-slide-toggle>
+        </div>
+        <br>
+
+
+        <div *ngIf="!askprerequest">
+            ****There are no Prerequest for this task****
+        </div>
+
+
+    </div>
+
+    <div *ngIf="askprerequest">
+        <div *ngFor="let prerequest of prerequests">
+            <mat-form-field id="inputtext">
+                <input matInput placeholder="Enter the prerequest {{prerequest}}">
+            </mat-form-field>
+            &nbsp;
+            <button class="inordes" type="button" class="btn btn-secondary" (click)="subRequest()">-</button>
+            &nbsp;
+            <button class="inordes" type="button" class="btn btn-secondary" (click)="addRequest()">+</button>
+            &nbsp;&nbsp;
+            <span *ngIf="!this.openCodeBaseValuesforPrerequest.includes(prerequest)">
+                <button mat-raised-button (click)="openCodeBaseForPrequest(prerequest)">
+                    Open Codebase
+                </button>
+            </span>
+
+
+            <span *ngIf="this.openCodeBaseValuesforPrerequest.includes(prerequest)">
+                <button mat-raised-button (click)="closeCodeBaseForPrerequest(prerequest)">
+                    close CodeBase
+                </button>
+
+            </span>
+
+
+
+
+
+
+
+            <div *ngIf="this.openCodeBaseValuesforPrerequest.includes(prerequest)">
+
+                opened the code base
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <hr>
+    <div>
+        <div *ngFor="let step of steps">
+
+
+            <mat-form-field id="inputtext">
+                <input matInput placeholder="Enter the {{step}} step">
+            </mat-form-field>
+            &nbsp;
+            <button class="inordes" type="button" class="btn btn-secondary" (click)="subStep()">-</button>
+            &nbsp;
+            <button class="inordes" type="button" class="btn btn-secondary" (click)="addStep()">+</button>
+            &nbsp;&nbsp;
+
+
+            <span *ngIf="!this.openCodeBaseValues.includes(step)">
+                <button mat-raised-button (click)="openCodeBaseForSteps(step)">
+                    Open Codebase
+                </button>
+            </span>
+
+
+            <span *ngIf="this.openCodeBaseValues.includes(step)">
+                <button mat-raised-button (click)="closeCodeBaseForSteps(step)">
+                    close CodeBase
+                </button>
+
+            </span>
+
+
+
+
+            <div *ngIf="this.openCodeBaseValues.includes(step)">
+                This is code base
+            </div>
+        </div>
+    </div>
+</div>
