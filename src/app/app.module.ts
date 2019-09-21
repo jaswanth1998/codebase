@@ -23,6 +23,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {MatButtonModule} from '@angular/material/button';
+import { EditorconfigComponent } from './editorconfig/editorconfig.component';
 
 
 
@@ -32,7 +33,8 @@ import {MatButtonModule} from '@angular/material/button';
     AngularComponent,
     AngulardialogueComponent,
     ProcessComponent,
-    SenditComponent
+    SenditComponent,
+    EditorconfigComponent
   ],
   imports: [
     BrowserModule,
