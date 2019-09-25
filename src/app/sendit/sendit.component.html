@@ -1,6 +1,4 @@
-<div id="headng">
-    SendIt
-</div>
+
 
 
 
@@ -27,9 +25,9 @@
     </div>
 
     <div *ngIf="askprerequest">
-        <div *ngFor="let prerequest of prerequests">
+        <div *ngFor="let prerequest of prerequests ; let i = index;">
             <mat-form-field id="inputtext">
-                <input matInput placeholder="Enter the prerequest {{prerequest}}">
+                <input [(ngModel)]="prerequestsofcodeBase[i]"   matInput placeholder="Enter the prerequest {{prerequest}}">
             </mat-form-field>
             &nbsp;
             <button class="inordes" type="button" class="btn btn-secondary" (click)="subRequest()">-</button>
@@ -58,7 +56,7 @@
 
             <div *ngIf="this.openCodeBaseValuesforPrerequest.includes(prerequest)">
 
-                opened the code base
+                <quill-editor  [(ngModel)]="prerequestsCodeofcodeBase[i]"></quill-editor>
 
 
             </div>
@@ -73,11 +71,11 @@
 
     <hr>
     <div>
-        <div *ngFor="let step of steps">
+        <div *ngFor="let step of steps; let i = index;">
 
 
             <mat-form-field id="inputtext">
-                <input matInput placeholder="Enter the {{step}} step">
+                <input  [(ngModel)]="stepsofcodeBase[i]"  matInput placeholder="Enter the {{step}} step">
             </mat-form-field>
             &nbsp;
             <button class="inordes" type="button" class="btn btn-secondary" (click)="subStep()">-</button>
@@ -104,8 +102,17 @@
 
 
             <div *ngIf="this.openCodeBaseValues.includes(step)">
-                This is code base
+                                <quill-editor   [(ngModel)]="codeForCodeBaseSteps[i]" ></quill-editor>
             </div>
         </div>
     </div>
+</div>
+
+
+<div >
+    <button mat-raised-button (click) = "consoleitinlog()">
+            Console It
+    </button>
+
+
 </div>

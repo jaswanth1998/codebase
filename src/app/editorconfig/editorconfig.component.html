@@ -1,8 +1,56 @@
-<p>editorconfig works!</p>
-<div class="code-editor"    #codeEditor   ></div>
+<!-- <p>editorconfig works!</p>
+<div class="code-editor"    #codeEditor >
+        
+    
+</div>
+<br>
+<br>
+<br>
+<div class="code-editor"    #codeEditor1 ></div>
+<br><br><br>
+
+
+
+ -->
+
+
+
+<form>
+    <quill-editor></quill-editor>
+</form>
+
+
+
+<quill-editor [(ngModel)]="binding"></quill-editor>
+
 
 <div>
-    <button mat-raised-button (click)= "getit()">
-        get It 
+    {{binding}}
+</div>
+
+
+
+
+<p>Iam working</p>
+
+
+<div id="editor" #editor>
+    <p>Hello World!</p>
+    <p>Some initial <strong>bold</strong> text</p>
+    <p><br></p>
+
+
+
+</div>
+<div>
+    <button mat-raised-button (click)="getit()">
+        get It
     </button>
 </div>
+
+<p [innerHTML]="binding">
+
+</p>
+
+
+

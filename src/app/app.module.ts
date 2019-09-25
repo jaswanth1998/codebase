@@ -24,8 +24,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {MatButtonModule} from '@angular/material/button';
 import { EditorconfigComponent } from './editorconfig/editorconfig.component';
+import { HomeComponent } from './home/home.component';
 
+// import {QuillInitializeService} from "./quill-initialize.service";
 
+import { QuillModule } from 'ngx-quill'
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { EditorconfigComponent } from './editorconfig/editorconfig.component';
     AngulardialogueComponent,
     ProcessComponent,
     SenditComponent,
-    EditorconfigComponent
+    EditorconfigComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { EditorconfigComponent } from './editorconfig/editorconfig.component';
     MatInputModule,
     MatSlideToggleModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule
 
   ],
   entryComponents: [

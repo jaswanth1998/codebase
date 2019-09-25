@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "/node_modules/quill/dist/quill.core.css";
+
+@import "/node_modules/quill/dist/quill.snow.css"; */
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-#headng{
+#heading{
     text-align: center;
     font-size: 24px;
     color: black;
 
-} 
+}  

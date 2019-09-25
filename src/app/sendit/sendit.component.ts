@@ -6,59 +6,64 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sendit.component.css']
 })
 export class SenditComponent implements OnInit {
-  
+
   color = 'primary';
   prerequests = [1];
   steps = [1];
   openCodeBaseValues = [];
   openCodeBaseValuesforPrerequest = [];
+  stepsofcodeBase = [];
+  codeForCodeBaseSteps = [];
+  prerequestsofcodeBase = [];
+  prerequestsCodeofcodeBase = [];
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  subRequest(){
-    if(this.prerequests.length<=1){
+  subRequest() {
+    if (this.prerequests.length <= 1) {
       alert("There  should be atleast one Prerequest")
-    }else{
+    } else {
       this.prerequests.pop();
       console.log("i am working")
     }
 
   }
-  addRequest(){
-    var invalue = this.prerequests.length+1;
-    this.prerequests.push(invalue); 
+  addRequest() {
+    var invalue = this.prerequests.length + 1;
+    this.prerequests.push(invalue);
     console.log("i am working")
 
   }
-  subStep(){
-    if(this.steps.length<=1){
-      
+  subStep() {
+    if (this.steps.length <= 1) {
+
       alert("There  should be atleast one Step")
-    }else{
+    } else {
       this.steps.pop();
       console.log("i am working")
     }
   }
-  addStep(){
-    var invalue = this.steps.length+1;
-    this.steps.push(invalue); 
+  addStep() {
+    var invalue = this.steps.length + 1;
+    this.steps.push(invalue);
     console.log("i am working")
 
   }
 
-  openCodeBaseForPrequest(value){
-    
+  openCodeBaseForPrequest(value) {
+
     this.openCodeBaseValuesforPrerequest.push(value);
 
   }
-  closeCodeBaseForPrerequest(values){
+  closeCodeBaseForPrerequest(values) {
     const index = this.openCodeBaseValuesforPrerequest.indexOf(values, 0);
-if (index > -1) {
-   this.openCodeBaseValuesforPrerequest.splice(index, 1);
-}
-    
+    if (index > -1) {
+      this.openCodeBaseValuesforPrerequest.splice(index, 1);
+    }
+
     console.log(this.openCodeBaseValuesforPrerequest)
 
   }
@@ -78,18 +83,27 @@ if (index > -1) {
 
 
 
-  openCodeBaseForSteps(value){
-    console.log("i am working",value)
+  openCodeBaseForSteps(value) {
+    console.log("i am working", value)
     this.openCodeBaseValues.push(value);
-console.log(this.openCodeBaseValues.includes(1));
+    console.log(this.openCodeBaseValues.includes(1));
   }
-  closeCodeBaseForSteps(values){
+  closeCodeBaseForSteps(values) {
     const index = this.openCodeBaseValues.indexOf(values, 0);
-if (index > -1) {
-   this.openCodeBaseValues.splice(index, 1);
-}
-    
+    if (index > -1) {
+      this.openCodeBaseValues.splice(index, 1);
+    }
+
     console.log(this.openCodeBaseValues)
+
+  }
+
+  consoleitinlog() {
+    console.log(this.prerequests, this.steps, this.openCodeBaseValuesforPrerequest, this.openCodeBaseValues);
+
+
+    
+
 
   }
 }
