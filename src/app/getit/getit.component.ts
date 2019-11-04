@@ -72,14 +72,17 @@ export class GetitComponent implements OnInit {
   }
   
 
-  openDialog(getAskprerequests,getprerequestsofcodeBase,getprerequestsCodeofcodeBase) {
+  openDialog(getAskprerequests,getprerequestsofcodeBase,getprerequestsCodeofcodeBase,getstepsofcodeBase,getcodeForCodeBaseSteps) {
    
    console.log(getprerequestsCodeofcodeBase)
     this.dialog.open(AngulardialogueComponent, {
       data: {
         sendaskprerequests: getAskprerequests,
         sendprerequestsofcodeBase:getprerequestsofcodeBase,
-        sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase
+        sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase,
+        sendstepsofcodeBase:getstepsofcodeBase,
+        sendcodeForCodeBaseSteps:getcodeForCodeBaseSteps
+
       },
       width:"100vh",
     });

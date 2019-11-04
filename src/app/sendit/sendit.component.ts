@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
+import { empty } from 'rxjs';
+// import undefined = require('firebase/empty-import');
 
 
 
@@ -120,6 +123,28 @@ export class SenditComponent implements OnInit {
     // this.prerequestsofcodeBase ,
     // this.prerequestsCodeofcodeBase ,
     // )
+    
+    // console.log(this.prerequestsofcodeBase,this.prerequestsCodeofcodeBase.length);
+    for(var i = 0;i<this.prerequestsofcodeBase.length;i++){
+      
+      if(this.prerequestsCodeofcodeBase[i] == undefined){
+        this.prerequestsCodeofcodeBase[i] = ""
+        
+      }else{
+        console.log("noting to do")
+      }
+    }
+
+
+    for (var i = 0 ;i < this.codeForCodeBaseSteps.length;i++){
+
+      if(this.codeForCodeBaseSteps[i] == undefined){
+        this.codeForCodeBaseSteps[i] = ""
+        
+      }else{
+        console.log("noting to do")
+      }
+    }
     if (this.askprerequest == false) {
       this.db.collection("Angular").add(
         {

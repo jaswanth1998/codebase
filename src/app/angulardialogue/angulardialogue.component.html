@@ -7,7 +7,16 @@
       {{i+1}}.{{data.sendprerequestsofcodeBase[i]}}
       {{data.sendprerequestsCodeofcodeBase[i]}}
   </div>
-  
+
+  <div>
+    steps
+  </div>
+  <div *ngFor="let item of data.sendstepsofcodeBase;let i = index">
+    {{i+1}}.{{data.sendstepsofcodeBase[i]}}
+    {{data.sendcodeForCodeBaseSteps[i]}}
+</div>
+
+
 </div>
 <ng-template #noprerequest>
 No there are no prerequest

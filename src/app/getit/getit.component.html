@@ -10,7 +10,7 @@
 
 <div  id = "displayGrid" class="container">
 <div *ngFor="let item of displayData" >
-    <div class="card" id = "displayFlex" (click)="openDialog(item.askprerequests,item.prerequestsofcodeBase,item.prerequestsCodeofcodeBase)" >
+    <div class="card" id = "displayFlex" (click)="openDialog(item.askprerequests,item.prerequestsofcodeBase,item.prerequestsCodeofcodeBase,item.stepsofcodeBase,item.codeForCodeBaseSteps)" >
         {{item.taskName}}
     </div>
 
