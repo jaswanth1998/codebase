@@ -1,14 +1,27 @@
-
-
-
-
 <div class="container">
     <div class="center">
         <mat-form-field id="inputtext">
-            <input matInput placeholder="Enter the task name">
+            <input [(ngModel)]="taskName" matInput placeholder="Enter the task name">
+
+
+        </mat-form-field>
+        <br>
+
+        <mat-form-field id="inputtext">
+            <mat-label>Select sub Topic</mat-label>
+            <mat-select [(ngModel)]="seletedTopic">
+                <mat-option *ngFor="let topic of topics" [value]="topic">
+                    {{topic}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
-        <div>
+
+
+        <div>  
+            <textarea [(ngModel)]="desc" name="" id="" cols="45" rows="3"
+                placeholder="Enter the Descpriction of the task"></textarea>
+            <br>
             <mat-slide-toggle class="example-margin" [(ngModel)]="askprerequest" [color]="color" [checked]="checked"
                 [disabled]="disabled">
                 Is there any Prerequest
@@ -27,7 +40,8 @@
     <div *ngIf="askprerequest">
         <div *ngFor="let prerequest of prerequests ; let i = index;">
             <mat-form-field id="inputtext">
-                <input [(ngModel)]="prerequestsofcodeBase[i]"   matInput placeholder="Enter the prerequest {{prerequest}}">
+                <input [(ngModel)]="prerequestsofcodeBase[i]" matInput
+                    placeholder="Enter the prerequest {{prerequest}}">
             </mat-form-field>
             &nbsp;
             <button class="inordes" type="button" class="btn btn-secondary" (click)="subRequest()">-</button>
@@ -56,7 +70,7 @@
 
             <div *ngIf="this.openCodeBaseValuesforPrerequest.includes(prerequest)">
 
-                <quill-editor  [(ngModel)]="prerequestsCodeofcodeBase[i]"></quill-editor>
+                <quill-editor [(ngModel)]="prerequestsCodeofcodeBase[i]"></quill-editor>
 
 
             </div>
@@ -75,7 +89,7 @@
 
 
             <mat-form-field id="inputtext">
-                <input  [(ngModel)]="stepsofcodeBase[i]"  matInput placeholder="Enter the {{step}} step">
+                <input [(ngModel)]="stepsofcodeBase[i]" matInput placeholder="Enter the {{step}} step">
             </mat-form-field>
             &nbsp;
             <button class="inordes" type="button" class="btn btn-secondary" (click)="subStep()">-</button>
@@ -102,17 +116,16 @@
 
 
             <div *ngIf="this.openCodeBaseValues.includes(step)">
-                                <quill-editor   [(ngModel)]="codeForCodeBaseSteps[i]" ></quill-editor>
+                <quill-editor [(ngModel)]="codeForCodeBaseSteps[i]"></quill-editor>
             </div>
         </div>
     </div>
-</div>
 
-
-<div >
-    <button mat-raised-button (click) = "consoleitinlog()">
+    <div>
+        <button mat-raised-button (click)="consoleitinlog()">
             Console It
-    </button>
+        </button>
 
 
+    </div>
 </div>

@@ -8,12 +8,22 @@ import { HomeComponent } from './home/home.component';
 
 import { EditorconfigComponent } from './editorconfig/editorconfig.component';
 
+import { FirebasetestComponent } from './firebasetest/firebasetest.component';
 
 import { AngularComponent } from './angular/angular.component';
+import { GetitComponent } from './getit/getit.component';
 const routes: Routes = [
   {
     path:"process",
     component:ProcessComponent
+  },
+  {
+    path:"getit",
+    component:GetitComponent
+  },
+  {
+    path:"firebase",
+    component:FirebasetestComponent
   },
   {
     path:"angular",

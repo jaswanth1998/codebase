@@ -1,0 +1,55 @@
+
+
+
+<div id="heading">
+    Networking Tasks
+</div>
+
+<br>
+<br>
+
+<div  id = "displayGrid" class="container">
+<div *ngFor="let item of displayData" >
+    <div class="card" id = "displayFlex" (click)="openDialog(item.askprerequests,item.prerequestsofcodeBase,item.prerequestsCodeofcodeBase)" >
+        {{item.taskName}}
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- use latter -->
+<!-- <div>
+<div>
+    {{item.seletedTopic}}
+
+</div>
+
+<div>
+    {{item.desc}}
+</div>
+<div>
+    {{item.askprerequests}}
+</div>
+
+<span  innerHTML =  "{{item.codeForCodeBaseSteps[0]}}">
+   
+</span>
+<div>
+    {{
+    item.openCodeBaseValues
+}}
+</div>
+<style>
+    pre:hover{
+    background: blue;
+    font-size: 24px;
+}
+    </style>
+<div>
+
+</div>
+</div> -->

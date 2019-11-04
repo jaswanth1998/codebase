@@ -31,6 +31,18 @@ import { HomeComponent } from './home/home.component';
 import { QuillModule } from 'ngx-quill'
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FirebasetestComponent } from './firebasetest/firebasetest.component';
+
+
+
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
+
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import {MatSelectModule} from '@angular/material/select';
+import { GetitComponent } from './getit/getit.component';
 
 @NgModule({
   declarations: [
@@ -40,10 +52,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProcessComponent,
     SenditComponent,
     EditorconfigComponent,
-    HomeComponent
+    HomeComponent,
+    FirebasetestComponent,
+    GetitComponent
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    MatSelectModule,
+    AngularFirestoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,

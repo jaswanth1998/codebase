@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
+
+
+
 
 @Component({
   selector: 'app-sendit',
@@ -6,8 +12,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sendit.component.css']
 })
 export class SenditComponent implements OnInit {
-
+  askprerequest = false;
   color = 'primary';
+  taskName = "";
+  desc = "";
+  seletedTopic = ""
+  topics = ["Basics", "Firebase","Netorking"]
   prerequests = [1];
   steps = [1];
   openCodeBaseValues = [];
@@ -17,7 +27,7 @@ export class SenditComponent implements OnInit {
   prerequestsofcodeBase = [];
   prerequestsCodeofcodeBase = [];
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
   }
@@ -64,7 +74,7 @@ export class SenditComponent implements OnInit {
       this.openCodeBaseValuesforPrerequest.splice(index, 1);
     }
 
-    console.log(this.openCodeBaseValuesforPrerequest)
+
 
   }
 
@@ -99,10 +109,61 @@ export class SenditComponent implements OnInit {
   }
 
   consoleitinlog() {
-    console.log(this.prerequests, this.steps, this.openCodeBaseValuesforPrerequest, this.openCodeBaseValues);
+    // console.log(this.prerequests, this.steps, this.openCodeBaseValuesforPrerequest, this.openCodeBaseValues);
+
+    // console.log(this.openCodeBaseValuesforPrerequest)
+
+    // console.log(
+    //   this.taskName,
+    //   this.stepsofcodeBase ,
+    // this.codeForCodeBaseSteps ,
+    // this.prerequestsofcodeBase ,
+    // this.prerequestsCodeofcodeBase ,
+    // )
+    if (this.askprerequest == false) {
+      this.db.collection("Angular").add(
+        {
+          taskName: this.taskName,
+          seletedTopic: this.seletedTopic,
+          desc: this.desc,
+          askprerequests: "No",
+          steps: this.steps,
+          openCodeBaseValues: this.openCodeBaseValues,
+          stepsofcodeBase: this.stepsofcodeBase,
+          codeForCodeBaseSteps: this.codeForCodeBaseSteps,
 
 
-    
+
+
+
+
+        }
+      )
+
+    } else {
+      this.db.collection("Angular").add(
+        {
+          taskName: this.taskName,
+          seletedTopic: this.seletedTopic,
+          desc: this.desc,
+          askprerequests: "yes",
+          prerequests: this.prerequests,
+          openCodeBaseValuesforPrerequest: this.openCodeBaseValuesforPrerequest,
+          prerequestsofcodeBase: this.prerequestsofcodeBase,
+          prerequestsCodeofcodeBase: this.prerequestsCodeofcodeBase,
+          steps: this.steps,
+          openCodeBaseValues: this.openCodeBaseValues,
+          stepsofcodeBase: this.stepsofcodeBase,
+          codeForCodeBaseSteps: this.codeForCodeBaseSteps,
+
+
+
+
+        }
+      )
+
+    }
+
 
 
   }
