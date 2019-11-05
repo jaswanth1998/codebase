@@ -4,3 +4,30 @@
 #setHight{
     height: 70vh;
 }
+#prerequestStyle{
+    width: 100%;
+    border: 2px dotted yellow;
+    border-radius: 25px;
+    
+}
+#marginlatout{
+    margin: 20px;
+}
+#prerequestStyleforcode{
+    width: 100%;
+    border: 2px dotted green;
+    border-radius: 25px;
+
+}
+#centerit{
+    text-align: center;
+}
+#styleButton{
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 200px;
+    height: 32px;
+    outline: none;
+    
+}
