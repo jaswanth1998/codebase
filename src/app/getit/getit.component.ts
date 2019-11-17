@@ -30,6 +30,22 @@ interface Response_json {
 }
 
 
+interface bringIt {
+  taskName: string,
+  seletedTopic: string,
+  desc: string,
+  askprerequests: string,
+  prerequests: string[],
+  openCodeBaseValuesforPrerequest: number[],
+  prerequestsofcodeBase: string[],
+  prerequestsCodeofcodeBase: string[],
+  steps: number[],
+  openCodeBaseValues: number[],
+  stepsofcodeBase: string[],
+  codeForCodeBaseSteps: string[],
+}
+
+
 @Component({
   selector: 'app-getit',
   templateUrl: './getit.component.html',
@@ -37,31 +53,32 @@ interface Response_json {
 })
 export class GetitComponent implements OnInit {
 
-  angularCollections: AngularFirestoreCollection<Response_json>;  // fs
+  angularCollections: AngularFirestoreDocument<Response_json>;  // fs
   angularCollection:any;
-  displayData:Response_json[] = [];
+  displayData:bringIt[] = [];
+
 
 
   constructor(private afs: AngularFirestore,public dialog: MatDialog) {
 
     var count = 0; 
     this.angularCollections = this.afs.collection(
-      'Angular'
-    );
+      'FirebaseArray'
+    ).doc('data');
     this.angularCollection = this.angularCollections.get()
     console.log(
       this.angularCollection.subscribe(
         
-        (querySnapshot)=>{
-          querySnapshot.forEach((doc) => {
+        (doc)=>{
+          
            
            
             console.log(doc.data())
-            this.displayData[count] = doc.data();
-            count = count +1;
+            this.displayData = doc.data().value;
+            // count = count +1;
            
      
-       })
+       
        
        
         }
@@ -72,16 +89,20 @@ export class GetitComponent implements OnInit {
   }
   
 
-  openDialog(getAskprerequests,getprerequestsofcodeBase,getprerequestsCodeofcodeBase,getstepsofcodeBase,getcodeForCodeBaseSteps) {
+  openDialog(
+    sendItem
+    // getAskprerequests,getprerequestsofcodeBase,getprerequestsCodeofcodeBase,getstepsofcodeBase,getcodeForCodeBaseSteps
+    ) {
    
-   console.log(getprerequestsCodeofcodeBase)
+   console.log()
     this.dialog.open(AngulardialogueComponent, {
       data: {
-        sendaskprerequests: getAskprerequests,
-        sendprerequestsofcodeBase:getprerequestsofcodeBase,
-        sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase,
-        sendstepsofcodeBase:getstepsofcodeBase,
-        sendcodeForCodeBaseSteps:getcodeForCodeBaseSteps
+        getItem:sendItem
+        // sendaskprerequests: getAskprerequests,
+        // sendprerequestsofcodeBase:getprerequestsofcodeBase,
+        // sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase,
+        // sendstepsofcodeBase:getstepsofcodeBase,
+        // sendcodeForCodeBaseSteps:getcodeForCodeBaseSteps
 
       },
       width:"100vh",

@@ -7,7 +7,7 @@ import QuillAutoLink from 'quill';
 })
 export class QuillInitializeService {
 
-
+  
   constructor() { 
     var Link = Quill.import('formats/link');
     Link.sanitize = (url) => {
@@ -17,4 +17,8 @@ export class QuillInitializeService {
       return url;
     }
     Quill.register('modules/autoLink', QuillAutoLink);
-  }}
+  }
+
+
+
+}

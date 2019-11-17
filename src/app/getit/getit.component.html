@@ -10,8 +10,17 @@
 
 <div  id = "displayGrid" class="container">
 <div *ngFor="let item of displayData" >
-    <div class="card" id = "displayFlex" (click)="openDialog(item.askprerequests,item.prerequestsofcodeBase,item.prerequestsCodeofcodeBase,item.stepsofcodeBase,item.codeForCodeBaseSteps)" >
-        {{item.taskName}}
+    <div class="card"  (click)="openDialog(item)" >
+
+        <div id = "displayFlex" >
+        {{item.split("@",3)[0]}}
+    </div>
+        <br>
+        <div id = "displayFlex">
+        {{item.split("@",3)[1]}}
+    </div>
+        
+        
     </div>
 
 </div>

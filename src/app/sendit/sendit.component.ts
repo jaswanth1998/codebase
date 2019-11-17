@@ -4,7 +4,7 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 import { empty } from 'rxjs';
 // import undefined = require('firebase/empty-import');
 
-
+import * as firebase from 'firebase/app';
 
 
 
@@ -146,7 +146,7 @@ export class SenditComponent implements OnInit {
       }
     }
     if (this.askprerequest == false) {
-      this.db.collection("Angular").add(
+      this.db.collection(this.seletedTopic).add(
         {
           taskName: this.taskName,
           seletedTopic: this.seletedTopic,
@@ -163,10 +163,49 @@ export class SenditComponent implements OnInit {
 
 
         }
+      ).then((doc)=>{
+        console.log(doc.id)
+
+        this.db.collection(this.seletedTopic+"Array").doc("data").update(          
+          {
+      value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@' )
+       }
+       
+  
+        ).then(
+          ()=>{
+            this.taskName = ""
+        this.seletedTopic  = ""
+        this.desc = ""
+        this.askprerequest = false
+        this.prerequests = [1]
+        this.steps = [1]
+        this.prerequestsofcodeBase = []
+        this.prerequestsCodeofcodeBase = []
+        this.stepsofcodeBase = []
+        this.codeForCodeBaseSteps = []
+        alert("sucess");
+
+
+          }
+        ).catch(
+          (err)=>{
+            alert("some error is ther")
+            console.log(err)
+          }
+        )
+        
+      }).catch(
+        (err)=>{
+          alert("some error is there")
+          console.log(err)
+
+        }
+        
       )
 
     } else {
-      this.db.collection("Angular").add(
+      this.db.collection(this.seletedTopic).add(
         {
           taskName: this.taskName,
           seletedTopic: this.seletedTopic,
@@ -185,6 +224,44 @@ export class SenditComponent implements OnInit {
 
 
         }
+      ).then((doc)=>{
+        console.log(doc.id)
+          this.db.collection(this.seletedTopic+"Array").doc("data").update(          
+    {
+value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@')
+   }
+ 
+  
+        ).then(
+          ()=>{
+            this.taskName = ""
+        this.seletedTopic  = ""
+        this.desc = ""
+        this.askprerequest = false
+        this.prerequests = [1]
+        this.steps = [1]
+        this.prerequestsofcodeBase = []
+        this.prerequestsCodeofcodeBase = []
+        this.stepsofcodeBase = []
+        this.codeForCodeBaseSteps = []
+        alert("sucess");
+
+
+          }
+        ).catch(
+          (err)=>{
+            alert("some error is ther")
+            console.log(err)
+
+          }
+        )
+        
+      }).catch(
+        (err)=>{
+          alert("some error is there")
+          console.log(err)
+        }
+        
       )
 
     }
