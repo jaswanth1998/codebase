@@ -12,13 +12,16 @@ import { FirebasetestComponent } from './firebasetest/firebasetest.component';
 
 import { AngularComponent } from './angular/angular.component';
 import { GetitComponent } from './getit/getit.component';
+
+
+
 const routes: Routes = [
   {
     path:"process",
     component:ProcessComponent
   },
   {
-    path:"getit",
+    path:"getit/:id",
     component:GetitComponent
   },
   {

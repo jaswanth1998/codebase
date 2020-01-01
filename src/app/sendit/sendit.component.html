@@ -8,13 +8,24 @@
         <br>
 
         <mat-form-field id="inputtext">
-            <mat-label>Select sub Topic</mat-label>
+            <mat-label>Select Topic</mat-label>
             <mat-select [(ngModel)]="seletedTopic">
-                <mat-option *ngFor="let topic of topics" [value]="topic">
+                <mat-option *ngFor="let topic of topics" [value]="topic"  (click) = "getSubTopic()"  >
                     {{topic}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
+
+<br>    
+        <mat-form-field id="inputtext">
+                <mat-label>Select Sub Topic</mat-label>
+                <mat-select [(ngModel)]="seletedsubTopic">
+                    <mat-option *ngFor="let subtopic of subtopics" [value]="subtopic">
+                        {{subtopic}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
 
 

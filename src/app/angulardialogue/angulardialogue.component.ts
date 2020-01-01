@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { DialogData } from '../angular/angular.component';
 
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 interface Response_json {
   taskName: string,
   seletedTopic: string,
@@ -25,7 +25,10 @@ interface Response_json {
 })
 export class AngulardialogueComponent implements OnInit {
   displayDataOnscreen :any;
+  requestThing :any;
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     public dialogRef: MatDialogRef<AngulardialogueComponent>,
     @Inject(MAT_DIALOG_DATA)  public data: DialogData
     ,
@@ -37,10 +40,13 @@ export class AngulardialogueComponent implements OnInit {
   }
   ngOnInit() {
     console.log(  this.data.getItem.split("@",3)[2])
-    this.db.collection("Firebase").doc(this.data.getItem.split("@",3)[2]).get().subscribe(
+    
+    console.log(this.data.getId)
+    this.db.collection(this.data.getId).doc(this.data.getItem.split("@",3)[2]).get().subscribe(
       (doc)=>{
         console.log(doc.data())
         this.displayDataOnscreen = doc.data()
+        console.log(this.displayDataOnscreen)
       }
     )
   }

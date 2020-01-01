@@ -6,7 +6,7 @@ import { empty } from 'rxjs';
 
 import * as firebase from 'firebase/app';
 
-
+import { GiveItService } from '../give-it.service';
 
 
 @Component({
@@ -16,11 +16,13 @@ import * as firebase from 'firebase/app';
 })
 export class SenditComponent implements OnInit {
   askprerequest = false;
+  subtopics = ["select"]
+  seletedsubTopic = ""
   color = 'primary';
   taskName = "";
   desc = "";
   seletedTopic = ""
-  topics = ["Basics", "Firebase","Netorking"]
+  topics = this.getittopicsinload.getTopics();
   prerequests = [1];
   steps = [1];
   openCodeBaseValues = [];
@@ -30,7 +32,7 @@ export class SenditComponent implements OnInit {
   prerequestsofcodeBase = [];
   prerequestsCodeofcodeBase = [];
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore ,public getittopicsinload:GiveItService) { }
 
   ngOnInit() {
   }
@@ -71,12 +73,33 @@ export class SenditComponent implements OnInit {
     this.openCodeBaseValuesforPrerequest.push(value);
 
   }
+  getSubTopic(){
+    console.log("i am here ");
+    if(this.seletedTopic.length >= 1){
+      console.log(this.seletedTopic)
+      this.db.collection('subTopic').doc(this.seletedTopic).get().subscribe(
+        (doc)=>{
+          console.log(doc.data().data)
+          this.subtopics = doc.data().data
+        }
+      )
+    }
+    else{
+      console.log("it is null")
+    
+    }
+
+
+
+    
+  }
   closeCodeBaseForPrerequest(values) {
     const index = this.openCodeBaseValuesforPrerequest.indexOf(values, 0);
     if (index > -1) {
       this.openCodeBaseValuesforPrerequest.splice(index, 1);
     }
 
+    
 
 
   }
@@ -168,7 +191,7 @@ export class SenditComponent implements OnInit {
 
         this.db.collection(this.seletedTopic+"Array").doc("data").update(          
           {
-      value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@' )
+      value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@' )
        }
        
   
@@ -228,7 +251,7 @@ export class SenditComponent implements OnInit {
         console.log(doc.id)
           this.db.collection(this.seletedTopic+"Array").doc("data").update(          
     {
-value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@')
+value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@')
    }
  
   

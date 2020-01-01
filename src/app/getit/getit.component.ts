@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+import { switchMap } from 'rxjs/operators';
 
 import { AngulardialogueComponent } from '../angulardialogue/angulardialogue.component';
 
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -56,14 +61,26 @@ export class GetitComponent implements OnInit {
   angularCollections: AngularFirestoreDocument<Response_json>;  // fs
   angularCollection:any;
   displayData:bringIt[] = [];
+  requestThing :any;
+  sendid:any;
+  
+
+  constructor(private afs: AngularFirestore,public dialog: MatDialog,
+    
+    private route: ActivatedRoute,
+    private router: Router,
 
 
+    
+    ) {
 
-  constructor(private afs: AngularFirestore,public dialog: MatDialog) {
-
+    this.requestThing=   this.route.snapshot.paramMap.get('id')
+    this.sendid = this.requestThing
+    this.requestThing = this.requestThing+"Array"
+    console.log(this.requestThing)
     var count = 0; 
     this.angularCollections = this.afs.collection(
-      'FirebaseArray'
+      this.requestThing
     ).doc('data');
     this.angularCollection = this.angularCollections.get()
     console.log(
@@ -97,7 +114,8 @@ export class GetitComponent implements OnInit {
    console.log()
     this.dialog.open(AngulardialogueComponent, {
       data: {
-        getItem:sendItem
+        getItem:sendItem,
+        getId:this.sendid
         // sendaskprerequests: getAskprerequests,
         // sendprerequestsofcodeBase:getprerequestsofcodeBase,
         // sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase,
@@ -110,6 +128,17 @@ export class GetitComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // route: ActivatedRoute;
+    // router: Router;
+    //   var hero$:Observable<string>
+    //  hero$= route.paramMap.pipe(
+    //   map((params: ParamMap) =>
+    //      (params.get('id')))
+        
+    // );
+    // console.log(ink,hero$);
+    
   }
 
 }

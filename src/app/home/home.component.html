@@ -5,9 +5,11 @@
 
 <div class="container">
     <div id="activateGrid">
-        <div>
-            <span>
-                <button class="fixedbox" routerLink="/angular">Angular</button>
+        <div id = "displayGrid">
+            <span *ngFor="let item of topics">
+
+                <button class="fixedbox" routerLink="/getit/{{item}}">{{item}}</button>
+                
             </span>
         </div>
     </div>

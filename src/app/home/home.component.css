@@ -12,14 +12,13 @@ border:2px solid black;
     color: #ffffff;
     box-shadow: 2px 5px #888888;
 }
+#displayGrid{
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-gap: 2% ;
 
+} 
 a{
     text-emphasis: none;
     text-decoration: none;
-}
-#activateGrid{
-    display: grid;
-    grid-template-columns: 23% 23% 23% 23%;
-    grid-gap: 10px;
-    
 }
