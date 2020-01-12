@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { AngulardialogueComponent } from '../angulardialogue/angulardialogue.component';
 
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -48,6 +48,7 @@ interface bringIt {
   openCodeBaseValues: number[],
   stepsofcodeBase: string[],
   codeForCodeBaseSteps: string[],
+  data: string[]
 }
 
 
@@ -59,63 +60,71 @@ interface bringIt {
 export class GetitComponent implements OnInit {
 
   angularCollections: AngularFirestoreDocument<Response_json>;  // fs
-  angularCollection:any;
-  displayData:bringIt[] = [];
-  requestThing :any;
-  sendid:any;
-  
+  reciveSubtopics: AngularFirestoreDocument<Response_json>;
+  angularCollection: any;
+  reciveSubtopic: any;
+  displayData: bringIt[] = [];
+  requestThing: any;
+  sendid: any;
+  onDisplay: string[]
 
-  constructor(private afs: AngularFirestore,public dialog: MatDialog,
-    
+  constructor(private afs: AngularFirestore, public dialog: MatDialog,
+
     private route: ActivatedRoute,
     private router: Router,
 
 
-    
-    ) {
 
-    this.requestThing=   this.route.snapshot.paramMap.get('id')
+  ) {
+
+    this.requestThing = this.route.snapshot.paramMap.get('id')
     this.sendid = this.requestThing
-    this.requestThing = this.requestThing+"Array"
+    this.requestThing = this.requestThing + "Array"
     console.log(this.requestThing)
-    var count = 0; 
+    var count = 0;
+
+    this.reciveSubtopics = this.afs.collection(
+      "subTopic"
+    ).doc(this.sendid)
+    this.reciveSubtopic = this.reciveSubtopics.get()
+
+    this.reciveSubtopic.subscribe(
+      (doc) => {
+
+
+
+        console.log(doc.data().data)
+
+        this.onDisplay = doc.data().data;
+
+        // count = count +1;
+
+
+
+
+
+      }
+    )
+
     this.angularCollections = this.afs.collection(
       this.requestThing
     ).doc('data');
-    this.angularCollection = this.angularCollections.get()
-    console.log(
-      this.angularCollection.subscribe(
-        
-        (doc)=>{
-          
-           
-           
-            console.log(doc.data())
-            this.displayData = doc.data().value;
-            // count = count +1;
-           
-     
-       
-       
-       
-        }
-      )
-    )
-    console.log(this.displayData)
-      
-  }
   
+    console.log(this.displayData)
+
+  }
+
 
   openDialog(
     sendItem
     // getAskprerequests,getprerequestsofcodeBase,getprerequestsCodeofcodeBase,getstepsofcodeBase,getcodeForCodeBaseSteps
-    ) {
-   
-   console.log()
+  ) {
+
+    console.log()
     this.dialog.open(AngulardialogueComponent, {
       data: {
-        getItem:sendItem,
-        getId:this.sendid
+        getItem: sendItem,
+        getId: this.sendid
         // sendaskprerequests: getAskprerequests,
         // sendprerequestsofcodeBase:getprerequestsofcodeBase,
         // sendprerequestsCodeofcodeBase:getprerequestsCodeofcodeBase,
@@ -123,7 +132,7 @@ export class GetitComponent implements OnInit {
         // sendcodeForCodeBaseSteps:getcodeForCodeBaseSteps
 
       },
-      width:"100vh",
+      width: "100vh",
     });
   }
 
@@ -135,10 +144,33 @@ export class GetitComponent implements OnInit {
     //  hero$= route.paramMap.pipe(
     //   map((params: ParamMap) =>
     //      (params.get('id')))
-        
+
     // );
     // console.log(ink,hero$);
-    
+
   }
 
+  getdataIntoHtml(item) {
+    this.angularCollections = this.afs.collection(
+      this.requestThing
+    ).doc(item);
+    this.angularCollection = this.angularCollections.get()
+
+    this.angularCollection.subscribe(
+
+      (doc) => {
+
+
+
+        console.log(doc.data())
+        this.displayData = doc.data().value;
+        // count = count +1;
+
+
+
+
+
+      }
+    )
+  }
 }

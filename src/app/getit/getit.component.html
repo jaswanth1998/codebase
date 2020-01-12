@@ -9,6 +9,12 @@
 <br>
 
 <div  id = "displayGrid" class="container">
+
+    <div *ngFor="let item of onDisplay">
+        <button (click) = "getdataIntoHtml(item)" >
+                {{item}}
+        </button>
+    </div>
 <div *ngFor="let item of displayData" >
     <div class="card"  (click)="openDialog(item)" >
 
@@ -23,7 +29,7 @@
         
     </div>
 
-</div>
+</div> 
 
 
 </div>

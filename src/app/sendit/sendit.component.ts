@@ -189,10 +189,13 @@ export class SenditComponent implements OnInit {
       ).then((doc)=>{
         console.log(doc.id)
 
-        this.db.collection(this.seletedTopic+"Array").doc("data").update(          
+        this.db.collection(this.seletedTopic+"Array").doc(this.seletedsubTopic).update(          
           {
-      value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@' )
-       }
+      value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@' ),
+      seleted:this.seletedTopic,
+      subTopic: this.seletedsubTopic   
+    
+    }
        
   
         ).then(
@@ -249,10 +252,13 @@ export class SenditComponent implements OnInit {
         }
       ).then((doc)=>{
         console.log(doc.id)
-          this.db.collection(this.seletedTopic+"Array").doc("data").update(          
+          this.db.collection(this.seletedTopic+"Array").doc(this.seletedsubTopic).update(          
     {
-value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@')
-   }
+value: firebase.firestore.FieldValue.arrayUnion(this.taskName+'@'+this.desc +'@'+doc.id +'@'+this.seletedsubTopic+'@'),
+  
+seleted:this.seletedTopic,
+subTopic: this.seletedsubTopic
+}
  
   
         ).then(
